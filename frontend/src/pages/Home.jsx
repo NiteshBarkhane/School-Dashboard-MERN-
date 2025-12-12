@@ -47,7 +47,7 @@ const Home = () => {
           ) : (
             <>
               <Link
-                to={`/${loggedUser.role}`}
+                to={`/${loggedUser.role}/dashboard`}
                 className="btn bg-red-600 rounded-md"
               >
                 View Dashboard
