@@ -8,8 +8,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://school-dashboard-backend-wgp2.onrender.com",
+      process.env.LOCAL_FRONTEND_URL,
+      process.env.PROUD_FRONTEND_URL,
     ],
     credentials: true,
   })
