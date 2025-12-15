@@ -71,7 +71,7 @@ const Home = () => {
 
           {/* Footer */}
           <div className="mt-10 text-sm text-gray-400">
-            © {new Date().getFullYear()} MyApp. All rights reserved.
+            © {new Date().getFullYear()} NItesh Barkhane. All rights reserved.
           </div>
         </div>
       </div>
