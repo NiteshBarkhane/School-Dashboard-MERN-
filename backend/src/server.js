@@ -17,7 +17,7 @@ cloudinary.config({
 connectDb()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`Server is running at ${process.env.BACKEND_URL}${PORT}`)
+      console.log(`Server is running at ${process.env.SERVER_URL}`)
     );
   })
   .catch((error) => {
