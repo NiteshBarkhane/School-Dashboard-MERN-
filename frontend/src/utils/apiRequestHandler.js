@@ -18,8 +18,7 @@ export function useRequestHandler() {
           if (error.response?.data?.status == 401) {
             message = "Unauthorized access! please login.";
             setLoggedUser(null);
-          }
-          message = error.response.data.message;
+          } else message = error.response.data.message;
         } else {
           message = `Frontend Error: ${error.message}`;
         }

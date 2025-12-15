@@ -101,7 +101,6 @@ const EditStudent = () => {
     const request = requestHandler(updateStudent);
     request(studentId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         navigate(`/${loggedUser.role}/student/view/${res.data._id}`);
       })

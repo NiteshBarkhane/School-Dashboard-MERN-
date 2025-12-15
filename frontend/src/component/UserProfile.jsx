@@ -36,6 +36,13 @@ const UserProfile = () => {
       return alert("New password and Confirm password is not same.");
     }
 
+    if (loggedUser.email == "demoadmin@gmail.com") {
+      return toast(
+        "This is an demo/test account. You can add new student/teacher to check this feature",
+        { icon: "⚠️" }
+      );
+    }
+
     setLoading(true);
     const formData = new FormData();
     formData.append("oldPassword", passwordData.oldPassword);
@@ -47,7 +54,6 @@ const UserProfile = () => {
     const request = requestHandler(changePassword);
     request(loggedUser.authId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
       })
       .catch((err) => {
@@ -76,6 +82,12 @@ const UserProfile = () => {
         {loggedUser.role == "admin" && <AdminProfile />}
         {loggedUser.role == "teacher" && <TeacherProfile />}
         {loggedUser.role == "student" && <StudentProfile />}
+        {loggedUser.email == "demoadmin@gmail.com" && (
+          <p className="text-red-800 mt-2">
+            <span>NOTE:</span> This is an demo/test account. You can add new
+            student/teacher to check this feature.
+          </p>
+        )}
       </div>
 
       {/* Change password */}
@@ -130,9 +142,15 @@ const UserProfile = () => {
             />
           </div>
         </form>
+        {loggedUser.email == "demoadmin@gmail.com" && (
+          <p className="text-red-800 mt-2">
+            <span>NOTE:</span> This is an demo/test account. You can add new
+            student/teacher to check this feature.
+          </p>
+        )}
       </div>
     </>
   );
 };
 
-export default UserProfile
+export default UserProfile;

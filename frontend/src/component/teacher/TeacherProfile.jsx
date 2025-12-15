@@ -99,7 +99,6 @@ const TeacherProfile = () => {
     const request = requestHandler(updateTeacher);
     request(loggedUser.userDataId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
       })
       .catch((err) => {

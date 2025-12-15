@@ -88,7 +88,6 @@ const ClassCreateModal = () => {
     const request = requestHandler(createClass);
     request(formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         navigate(`/${loggedUser.role}/class/view/${res.data._id}`);
       })

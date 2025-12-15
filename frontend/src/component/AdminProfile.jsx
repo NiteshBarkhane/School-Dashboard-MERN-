@@ -36,14 +36,13 @@ const AdminProfile = () => {
       setProfileImage(URL.createObjectURL(event.target.files[0]));
     }
   }
-
+  console.log(loggedUser);
   // get student data from database
   async function getAdminData() {
     setLoading(true);
     const request = requestHandler(getAdmin);
-    request()
+    request(loggedUser.userDataId)
       .then((res) => {
-        console.log(res.data);
         setInputData(res.data);
         setProfileImage(res.data?.profileImage);
       })
@@ -59,6 +58,12 @@ const AdminProfile = () => {
   // handle form submit
   function handleSubmit(event) {
     event.preventDefault();
+    if (loggedUser.email == "demoadmin@gmail.com") {
+      return toast(
+        "This is an demo/test account. You can add new student/teacher to check this feature",
+        { icon: "⚠️" }
+      );
+    }
     setLoading(true);
     const formData = new FormData();
     for (const key in inputData) {
@@ -69,9 +74,8 @@ const AdminProfile = () => {
     // }
 
     const request = requestHandler(updatedmin);
-    request(formData)
+    request(loggedUser.userDataId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
       })
       .catch((err) => {
@@ -175,4 +179,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile
+export default AdminProfile;

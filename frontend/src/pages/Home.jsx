@@ -11,59 +11,72 @@ const Home = () => {
   const requestHandler = useRequestHandler();
   const { loggedUser, setLoggedUser } = useAuth();
 
-  // logout user
   function handleLogout() {
     setLoading(true);
     const request = requestHandler(logout);
 
     request()
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         setLoggedUser(null);
       })
       .catch((err) => {
-        console.log(err);
-        toast.error(err.message);
+        toast.error(err.message || "Logout failed");
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }
 
   return (
     <>
-      {loading ? <Loading /> : ""}
+      {loading && <Loading />}
       <Toaster position="top-right" reverseOrder={false} />
 
-      <div>
-        <h1 className="mb-7">Home</h1>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-6">
+        <div className="max-w-4xl w-full bg-white shadow-xl rounded-2xl p-10 text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            Welcome to <span className="text-indigo-600">School Management Dashboard</span>
+          </h1>
 
-        <div className="flex gap-4 m-4">
+          <p className="text-gray-600 mb-10">
+            A secure and modern platform to manage your dashboard, users,
+            and data efficiently.
+          </p>
+
           {!loggedUser ? (
-            <Link className="btn bg-blue-600 rounded-md" to={"/login"}>
-              Login
-            </Link>
+            <div className="flex justify-center gap-4">
+              <Link
+                to="/login"
+                className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition"
+              >
+                Login
+              </Link>
+            </div>
           ) : (
-            <>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to={`/${loggedUser.role}/dashboard`}
-                className="btn bg-red-600 rounded-md"
+                className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition"
               >
-                View Dashboard
+                Go to Dashboard
               </Link>
+
               <button
-                className="btn bg-blue-600 rounded-md"
                 onClick={handleLogout}
+                className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition"
               >
                 Logout
               </button>
-            </>
+            </div>
           )}
+
+          {/* Footer */}
+          <div className="mt-10 text-sm text-gray-400">
+            © {new Date().getFullYear()} MyApp. All rights reserved.
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default Home
+export default Home;

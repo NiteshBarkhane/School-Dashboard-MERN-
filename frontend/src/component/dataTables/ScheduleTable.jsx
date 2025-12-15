@@ -80,7 +80,6 @@ const ScheduleTable = () => {
     const request = requestHandler(deleteSchedule);
     request(scheduleId)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         getAllSchedulesData();
       })

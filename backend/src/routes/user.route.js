@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route("/login").post(loginUser);
 router.route("/logout").post(verifyToken, logoutUser);
-router.route("/change_password/:id").put(updateUserPassword)
+router.route("/change_password/:id").put(verifyToken,updateUserPassword)
 
 export default router;

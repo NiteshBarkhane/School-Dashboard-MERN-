@@ -80,7 +80,6 @@ const StudentTable = () => {
     const request = requestHandler(deleteStudent);
     request(userId)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         getStudentsData();
       })

@@ -30,7 +30,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   let result;
   if (loggedUser.role === "admin") {
-    result = await Admin.findOne({}).select("profileImage name _id");
+    result = await Admin.findOne({ email }).select("profileImage name _id");
   } else if (loggedUser.role === "teacher") {
     result = await Teacher.findOne({ email }).select("profileImage name _id");
   } else if (loggedUser.role === "student") {
@@ -42,7 +42,11 @@ const loginUser = asyncHandler(async (req, res) => {
   const accessTokenExpiry = await loggedUser.getAccessTokenExpiry();
 
   res
-    .cookie("accessToken", accessToken, { httpOnly: true, secure: true })
+    .cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    })
     .status(200)
     .json(
       new ApiResponse(200, "Login successfully.", {
@@ -70,7 +74,11 @@ const logoutUser = asyncHandler(async (req, res) => {
 
   res
     .status(200)
-    .clearCookie("accessToken", { httpOnly: true, secure: true })
+    .clearCookie("accessToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    })
     .json(new ApiResponse(200, "User logout successfully", loggedOutUser));
 });
 

@@ -24,7 +24,6 @@ const Dashboard = () => {
     const request = requestHandler(getAllRecords);
     request()
       .then((res) => {
-        console.log(res);
         // toast.success(res.message);
         setDashboardData(res.data);
       })

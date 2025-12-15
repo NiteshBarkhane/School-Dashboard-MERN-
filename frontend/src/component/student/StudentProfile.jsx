@@ -71,7 +71,6 @@ const StudentProfile = () => {
     const request = requestHandler(getStudent);
     request(loggedUser.userDataId)
       .then((res) => {
-        console.log(res.data);
         setInputData(res.data);
         setProfileImage(res.data?.profileImage);
       })
@@ -99,7 +98,6 @@ const StudentProfile = () => {
     const request = requestHandler(updateStudent);
     request(loggedUser.userDataId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
       })
       .catch((err) => {
@@ -410,4 +408,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile
+export default StudentProfile;

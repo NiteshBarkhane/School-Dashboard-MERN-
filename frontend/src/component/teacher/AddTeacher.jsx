@@ -80,9 +80,8 @@ const AddTeacher = () => {
     const request = requestHandler(registerTeacher);
     request(formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
-        navigate(`${loggedUser.role}/teacher/view/${res.data._id}`);
+        navigate(`/${loggedUser.role}/teacher/view/${res.data._id}`);
       })
       .catch((error) => {
         console.log(error);
