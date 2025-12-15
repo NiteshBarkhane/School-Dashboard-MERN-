@@ -8,8 +8,8 @@ import { useAuth } from "../context/authContext";
 import { useRequestHandler } from "../utils/apiRequestHandler";
 
 const initalState = {
-  email: "",
-  password: "",
+  email: "demoadmin@gmail.com",
+  password: "admin",
 };
 
 const Login = () => {
@@ -33,7 +33,6 @@ const Login = () => {
     // login(inputData)
     request(inputData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         setLoggedUser(res.data);
         navigate(`/${res.data.role}/dashboard`);

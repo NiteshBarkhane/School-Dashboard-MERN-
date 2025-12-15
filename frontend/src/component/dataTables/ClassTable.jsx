@@ -80,8 +80,7 @@ const ClassTable = () => {
     const request = requestHandler(deleteClass);
     request(classId)
       .then((res) => {
-        console.log(res);
-        toast.success(res.message);
+       toast.success(res.message);
         getAllClassesData();
       })
       .catch((err) => {

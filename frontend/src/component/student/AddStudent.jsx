@@ -82,9 +82,8 @@ const AddStudent = () => {
     const request = requestHandler(registerStudent);
     request(formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
-        navigate(`${loggedUser.role}/student/view/${res.data._id}`);
+        navigate(`/${loggedUser.role}/student/view/${res.data._id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -428,4 +427,4 @@ const AddStudent = () => {
   );
 };
 
-export default AddStudent
+export default AddStudent;

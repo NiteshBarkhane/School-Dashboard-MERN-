@@ -30,7 +30,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   let result;
   if (loggedUser.role === "admin") {
-    result = await Admin.findOne({}).select("profileImage name _id");
+    result = await Admin.findOne({ email }).select("profileImage name _id");
   } else if (loggedUser.role === "teacher") {
     result = await Teacher.findOne({ email }).select("profileImage name _id");
   } else if (loggedUser.role === "student") {

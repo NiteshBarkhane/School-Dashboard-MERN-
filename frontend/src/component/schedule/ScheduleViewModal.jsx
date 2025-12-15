@@ -88,7 +88,7 @@ const ScheduleViewModal = () => {
       <div className="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-50 backdrop-blur-sm">
         <div
           ref={modalboxRef}
-          className="bg-white rounded-lg shadow-lg w-3/4 md:w-1/2 p-6 pb-14 mt-5 relative animate-bottomSlideIn"
+          className="bg-white rounded-lg shadow-lg w-3/4 xl:w-1/2 p-6 pb-14 mt-5 relative animate-bottomSlideIn"
         >
           {/* Close button */}
           <button

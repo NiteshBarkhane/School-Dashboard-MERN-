@@ -76,7 +76,7 @@ const LeftNavBar = () => {
     >
       {/* Leftnav Profile */}
       <div className="hidden lg:block relative text-center px-[30px] py-[35px] bg-waves bg-no-repeat bg-[#ffffff21]">
-        <a href="#">
+        <a >
           {expandLeftbar && (
             <>
               <img

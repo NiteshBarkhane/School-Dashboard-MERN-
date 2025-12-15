@@ -26,7 +26,6 @@ const Topbar = () => {
 
     request()
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         setLoggedUser(null);
       })
@@ -73,7 +72,7 @@ const Topbar = () => {
             </div>
 
             <div ref={myRef} className="flex gap-8 items-center">
-              <Link to="/" className="btn hidden lg:block">
+              <Link to="/" className="btn ">
                 Visit Website
               </Link>
               <div className="relative">

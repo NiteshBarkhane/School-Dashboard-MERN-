@@ -14,8 +14,9 @@ import {
 
 // get admin
 const getAdmin = asyncHandler(async (req, res) => {
+  const {id} = req.params
   // search for admin
-  const admin = await Admin.findOne({}).select("-__v");
+  const admin = await Admin.findById(id).select("-__v");
   if (!admin) throw new ApiError(404, "Admin not found.");
 
   // return response data of admin
@@ -26,21 +27,23 @@ const getAdmin = asyncHandler(async (req, res) => {
 const updateAdmin = asyncHandler(async (req, res) => {
   // Destructure essential fields
   const { name, email } = req.body;
+  const {id} = req.params
   const profileImage =
     req.files?.profileImage?.tempFilePath || req.body.profileImage || "";
-
-  // Check require fileds
-  if ([name, email].some((field) => field.trim() === ""))
-    throw new ApiError(400, "Fill the required fields");
-
-  // Check the already existence
-  const admin = await Admin.findOne({});
-  if (!admin) throw new ApiError(404, "Admin not found");
-  const userWithExistingEmail = await User.findById(admin.authData);
-  if (!userWithExistingEmail) throw new ApiError(404, "User not found");
-
-  // If profileImage is passed and changed replace user profile on cloudinary
-  let newProfileImageCloudinaryUrl = "";
+    // Check require fileds
+    if ([name, email].some((field) => field.trim() === ""))
+      throw new ApiError(400, "Fill the required fields");
+    
+    // Check the already existence
+    const admin = await Admin.findById(id);
+    if (!admin) throw new ApiError(404, "Admin not found");
+    const userWithExistingEmail = await User.findById(admin.authData);
+    if (!userWithExistingEmail) throw new ApiError(404, "User not found");
+    
+    // If profileImage is passed and changed replace user profile on cloudinary
+    let newProfileImageCloudinaryUrl = "";
+    console.log(profileImage)
+    console.log('admin.profileImage', admin.profileImage)
   if (profileImage && admin.profileImage !== profileImage) {
     const cloudinaryDeleteResponse = await deleteFromCloudinary(
       admin.profileImage

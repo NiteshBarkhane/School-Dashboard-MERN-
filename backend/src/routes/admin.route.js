@@ -3,8 +3,8 @@ import { getAdmin, getAllRecords, updateAdmin } from "../controllers/admin.contr
 
 const router = express.Router();
 
-router.route("/get").get(getAdmin);
-router.route("/update").put(updateAdmin);
+router.route("/get/:id").get(getAdmin);
+router.route("/update/:id").put(updateAdmin);
 router.route("/records").get(getAllRecords)
 
 export default router;

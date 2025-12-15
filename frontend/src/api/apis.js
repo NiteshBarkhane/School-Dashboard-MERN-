@@ -33,15 +33,15 @@ export async function changePassword(userId, passwordData) {
 // Admin
 // --------------------
 // get admin
-export async function getAdmin() {
-  const response = await axios.get(`${backend_url}/api/v1/admin/get`);
+export async function getAdmin(adminId) {
+  const response = await axios.get(`${backend_url}/api/v1/admin/get/${adminId}`);
   if (response) return response.data;
 }
 
 // get update admin
-export async function updatedmin(adminData) {
+export async function updatedmin(adminId,adminData) {
   const response = await axios.put(
-    `${backend_url}/api/v1/admin/update`,
+    `${backend_url}/api/v1/admin/update/${adminId}`,
     adminData
   );
   if (response) return response.data;

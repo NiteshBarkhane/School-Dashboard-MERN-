@@ -100,7 +100,6 @@ const ScheduleCreateModal = () => {
     const request = requestHandler(createSchedule);
     request(formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         navigate(`/${loggedUser.role}/schedule/view/${res.data._id}`);
       })
@@ -127,7 +126,6 @@ const ScheduleCreateModal = () => {
     const request1 = requestHandler(getAllClass);
     request1()
       .then((res) => {
-        console.log(res.data);
         // toast.success(res.message);
         setClassAndSection(res.data);
       })
@@ -138,7 +136,6 @@ const ScheduleCreateModal = () => {
     const request2 = requestHandler(getAllTeacher);
     request2()
       .then((res) => {
-        console.log(res.data);
         // toast.success(res.message);
         setTeachers(res.data);
       })

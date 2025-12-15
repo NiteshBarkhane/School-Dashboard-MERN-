@@ -89,7 +89,6 @@ const ClassEditModal = () => {
     const request = requestHandler(updateClass);
     request(classId, formData)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         navigate(`/${loggedUser.role}/class/view/${res.data._id}`);
       })
@@ -117,7 +116,6 @@ const ClassEditModal = () => {
     const request = requestHandler(getClass);
     request(classId)
       .then((res) => {
-        console.log(res);
         // toast.success(res.message);
         setInputData(res.data);
         setSelectedSection(res.data.section);

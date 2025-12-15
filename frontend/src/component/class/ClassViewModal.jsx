@@ -21,7 +21,6 @@ const ClassViewModal = () => {
     const request = requestHandler(getClass);
     request(classId)
       .then((res) => {
-        console.log(res);
         // toast.success(res.message);
         setClassData(res.data);
       })
