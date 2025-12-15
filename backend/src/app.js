@@ -7,7 +7,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: [
+      "http://localhost:5173",
+      "https://school-dashboard-backend-wgp2.onrender.com",
+    ],
+    credentials: true,
   })
 );
 app.use(cookieParser());
@@ -23,15 +27,16 @@ import studentRouter from "./routes/student.route.js";
 import departmentRouter from "./routes/department.route.js";
 import classRouter from "./routes/class.route.js";
 import scheduleRouter from "./routes/schedule.route.js";
+import { verifyToken } from "./middlewares/auth.middleware.js";
 
 // Declare routers
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/admin", adminRouter);
-app.use("/api/v1/teacher", teacherRouter);
-app.use("/api/v1/student", studentRouter);
+app.use("/api/v1/admin", verifyToken,adminRouter);
+app.use("/api/v1/teacher",verifyToken, teacherRouter);
+app.use("/api/v1/student",verifyToken, studentRouter);
 // app.use("/api/v1/department", departmentRouter); //we are not using department
-app.use("/api/v1/class", classRouter);
-app.use("/api/v1/schedule", scheduleRouter);
+app.use("/api/v1/class",verifyToken, classRouter);
+app.use("/api/v1/schedule",verifyToken, scheduleRouter);
 
 // Global/Centralized error response handler
 app.use((err, req, res, next) => {
