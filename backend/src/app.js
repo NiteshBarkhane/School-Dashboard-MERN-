@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import { requestLogger } from "./middlewares/logger.middleware.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(requestLogger);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
