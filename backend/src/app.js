@@ -27,9 +27,11 @@ import studentRouter from "./routes/student.route.js";
 import departmentRouter from "./routes/department.route.js";
 import classRouter from "./routes/class.route.js";
 import scheduleRouter from "./routes/schedule.route.js";
+import healthRouter from "./routes/health.route.js";
 import { verifyToken } from "./middlewares/auth.middleware.js";
 
 // Declare routers
+app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", verifyToken,adminRouter);
 app.use("/api/v1/teacher",verifyToken, teacherRouter);
